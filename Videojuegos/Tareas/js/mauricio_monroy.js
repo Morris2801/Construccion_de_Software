@@ -1,9 +1,12 @@
+// -----------------------------------------------
 // Mauricio Emilio Monroy González - A01029647
 // 12-2-2025
+// -----------------------------------------------
 // Descripción: contiene 15 funciones que resuelven problemas de programación en JavaScript; se utilizan ciclos for, while, condicionales, operaciones matemáticas, operaciones de strings, arreglos y objetos.
 
 "use strict";
 
+// 1. firstNonRepeating(): encuentra primer caracter que no se repite en str
 export function firstNonRepeating(text){
     for (let i = 0; i < text.length; i++){
         if (text.indexOf(text[i]) == text.lastIndexOf(text[i])){
@@ -13,7 +16,7 @@ export function firstNonRepeating(text){
 }
 console.log("1. FirstNonRepeating: ", firstNonRepeating("abacddbec"));
 
-
+// 2. bubbleSort(): ordena arreglo de números con algoritmo BubbleSort
 export function bubbleSort(numList){
     for (let i = 0; i < numList.length; i++){
         for (let j = 0; j < numList.length - i - 1; j++){
@@ -28,7 +31,7 @@ export function bubbleSort(numList){
 }
 console.log("2. BubbleSort: ", bubbleSort([4, 3, 2, 1, 10, 29, 23]));
 
-
+// 3. invertArray() + invertArrayInplace(): invierte arreglo de números
 export function invertArray(numList){
     let invertedArray = numList.reverse();
     return invertedArray; 
@@ -44,7 +47,7 @@ export function invertArrayInplace(numList){
 }
 console.log("3.2 InvertArrayInplace: ", invertArrayInplace([4, 3, 2, 1, 10, 29, 23]));
 
-
+// 4. capitalize(): cambia primera letra de cada palabra a mayúscula
 export function capitalize(text){
     if (text.length == 0){
         return text; 
@@ -58,7 +61,7 @@ export function capitalize(text){
 }
 console.log("4. Capitalizar: ", capitalize("hello world"));
 
-
+// 5. mcd(): devuelve máximo común denominador entre dos números
 export function mcd(num1, num2){
     let mcd = 0;
     let res = 1;  
@@ -83,7 +86,7 @@ export function mcd(num1, num2){
 }
 console.log("5. MCD: ", mcd(48,18));
 
-
+// 6. hackerSpeak(): cambia determinados caracteres de frases
 export function hackerSpeak(text){
     for (let i = 0; i < text.length; i++){
         text = text.replace("a", "4");
@@ -96,7 +99,7 @@ export function hackerSpeak(text){
 }
 console.log("6. HackerSpeak: ", hackerSpeak("Javascript es divertido"));
 
-
+// 7. factorize(): encuentra lista de factores primos de dado número
 export function factorize(num){
     let factors = [];
     for (let i = 1; i <= num; i++){
@@ -108,7 +111,7 @@ export function factorize(num){
 }
 console.log("7. Factorizar: ", factorize(12));
 
-
+// 8. deduplicate(): encuentra valores únicos en lista
 export function deduplicate(numList){
     let newlist = [];
     for (let i = 0; i < numList.length; i++){
@@ -120,7 +123,7 @@ export function deduplicate(numList){
 }
 console.log("8. Deduplicate: ", deduplicate([1, 0, 1, 1, 0, 0]));
 
-
+// 9. findShortestString(): encuentra string de longitud más corta dentro de array de strings
 export function findShortestString(textList){
     if (textList.length == 0){
         return 0;
@@ -135,7 +138,7 @@ export function findShortestString(textList){
 }  
 console.log("9. Shortest: ", findShortestString(["one", "two", "thr", "fou"]));
 
-
+// 10. isPalindrome(): determina si string es palíndromo o no
 export function isPalindrome(text){
     let words = text.split(" ");
     text = words.join();
@@ -147,12 +150,14 @@ export function isPalindrome(text){
 }
 console.log("10. Palindromo: ", isPalindrome("yo hago yoga ho"));
 
+// 11. sortStrings(): ordena alfabéticamente palabras
 export function sortStrings(words){
     let sorted = words.sort(); 
     return sorted; 
 }
 console.log("11. SortStrings: ", sortStrings(["wasd", "hola", "adios", "idk", "javascript"]));
 
+// 12. stats(): devuelve promedio y moda de lista de números
 export function stats(numList) {
     if (numList.length == 0) {
         return [0, 0];
@@ -178,7 +183,7 @@ export function stats(numList) {
 }
 console.log("12. Stats: ", stats([8, 4, 2, 6, 8, 13, 17, 2, 4, 8]));
 
-
+// 13. popularString(): devuelve palabra con más frecuencia entre lista de palabras
 export function popularString(textList){
     if (textList.length == 0) {
         return "";
@@ -201,7 +206,7 @@ export function popularString(textList){
 }
 console.log("13. PopularString: ", popularString(["hola", "adios", "hola", "hola", "adios", "hola", "hola", "adios"]));
 
-
+// 14. isPowerOf2(): determina si dado número es resultado de elevar 2 a potencia n
 export function isPowerOf2(num){
     if (num == 1){
         return true;
@@ -217,7 +222,7 @@ export function isPowerOf2(num){
 }
 console.log("14. PowerOf2: ", isPowerOf2(32));
 
-
+// 15. sortDescending(): ordena descendientemente lista de números
 export function sortDescending(numList){
     let sorted = bubbleSort(numList);
     sorted = sorted.reverse();
