@@ -4,7 +4,7 @@
 
 "use strict";
 
-function firstNonRepeating(text){
+export function firstNonRepeating(text){
     for (let i = 0; i < text.length; i++){
         if (text.indexOf(text[i]) == text.lastIndexOf(text[i])){
             return text[i];
@@ -14,7 +14,7 @@ function firstNonRepeating(text){
 console.log("1. FirstNonRepeating: ", firstNonRepeating("abacddbec"));
 
 
-function bubbleSort(numList){
+export function bubbleSort(numList){
     for (let i = 0; i < numList.length; i++){
         for (let j = 0; j < numList.length - i - 1; j++){
             if (numList[j] > numList[j + 1]){
@@ -29,12 +29,12 @@ function bubbleSort(numList){
 console.log("2. BubbleSort: ", bubbleSort([4, 3, 2, 1, 10, 29, 23]));
 
 
-function invertArray(numList){
+export function invertArray(numList){
     let invertedArray = numList.reverse();
     return invertedArray; 
 }
 console.log("3.1 InvertArray: ", invertArray([4, 3, 2, 1, 10, 29, 23]));
-function invertArrayInplance(numList){
+export function invertArrayInplace(numList){
     for (let i = 0; i < numList.length /2 ; i++ ){
         let temp = numList[i];
         numList[i] = numList[numList.length - i - 1];
@@ -42,10 +42,13 @@ function invertArrayInplance(numList){
     }
     return numList; 
 }
-console.log("3.2 InvertArrayInplace: ", invertArrayInplance([4, 3, 2, 1, 10, 29, 23]));
+console.log("3.2 InvertArrayInplace: ", invertArrayInplace([4, 3, 2, 1, 10, 29, 23]));
 
 
-function capitalize(text){
+export function capitalize(text){
+    if (text.length == 0){
+        return text; 
+    }
     let words = text.split(" ");
     for (let i = 0; i < words.length; i++){
         words[i] = words[i][0].toUpperCase() + words[i].slice(1); 
@@ -56,9 +59,12 @@ function capitalize(text){
 console.log("4. Capitalizar: ", capitalize("hello world"));
 
 
-function mcd(num1, num2){
+export function mcd(num1, num2){
     let mcd = 0;
     let res = 1;  
+    if (num1 == 0 && num2 == 0){
+        return 0;
+    }
     while (res != 0){
         if (num1 > num2){
             res = num1 % num2; 
@@ -78,19 +84,20 @@ function mcd(num1, num2){
 console.log("5. MCD: ", mcd(48,18));
 
 
-function hackerSpeak(text){
-    text = text.replace("a", "4");
-    text = text.replace("s", "5"); 
-    text = text.replace("r", "1"); 
-    text = text.replace("e", "3");
-    text = text.replace("i", "1");
-    text = text.replace("o", "0");
+export function hackerSpeak(text){
+    for (let i = 0; i < text.length; i++){
+        text = text.replace("a", "4");
+        text = text.replace("s", "5");
+        text = text.replace("e", "3");
+        text = text.replace("i", "1");
+        text = text.replace("o", "0");
+    }
     return text; 
 }
 console.log("6. HackerSpeak: ", hackerSpeak("Javascript es divertido"));
 
 
-function factorize(num){
+export function factorize(num){
     let factors = [];
     for (let i = 1; i <= num; i++){
         if (num % i == 0){
@@ -102,7 +109,7 @@ function factorize(num){
 console.log("7. Factorizar: ", factorize(12));
 
 
-function deduplicate(numList){
+export function deduplicate(numList){
     let newlist = [];
     for (let i = 0; i < numList.length; i++){
         if (newlist.indexOf(numList[i]) == -1){
@@ -114,20 +121,22 @@ function deduplicate(numList){
 console.log("8. Deduplicate: ", deduplicate([1, 0, 1, 1, 0, 0]));
 
 
-function findShortestString(textList){
-    let words = textList.split(" ");
-    let short = words[0]; 
-    for (let i = 0; i < words.length; i++){
-        if (words[i].length < short.length){
-            short = words[i];
+export function findShortestString(textList){
+    if (textList.length == 0){
+        return 0;
+    }
+    let short = textList[0].length;
+    for (let i = 0; i < textList.length; i++){
+        if (textList[i].length < short){
+            short = textList[i].length;
         }
     }
     return short; 
 }  
-console.log("9. Shortest: ", findShortestString("aaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaa aaaaaaa a aaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+console.log("9. Shortest: ", findShortestString(["one", "two", "thr", "fou"]));
 
 
-function isPalindrome(text){
+export function isPalindrome(text){
     let words = text.split(" ");
     text = words.join();
     let reversed = "";
@@ -138,13 +147,16 @@ function isPalindrome(text){
 }
 console.log("10. Palindromo: ", isPalindrome("yo hago yoga ho"));
 
-function sortStrings(words){
+export function sortStrings(words){
     let sorted = words.sort(); 
     return sorted; 
 }
 console.log("11. SortStrings: ", sortStrings(["wasd", "hola", "adios", "idk", "javascript"]));
 
-function stats(numList) {
+export function stats(numList) {
+    if (numList.length == 0) {
+        return [0, 0];
+    }  
     let freq = {};
     let average = 0;
     let moda = numList[0];
@@ -167,7 +179,10 @@ function stats(numList) {
 console.log("12. Stats: ", stats([8, 4, 2, 6, 8, 13, 17, 2, 4, 8]));
 
 
-function popularString(textList){
+export function popularString(textList){
+    if (textList.length == 0) {
+        return "";
+    }
     let freq = {};
     let moda = textList[0];
     let maxCount = 0;
@@ -187,7 +202,10 @@ function popularString(textList){
 console.log("13. PopularString: ", popularString(["hola", "adios", "hola", "hola", "adios", "hola", "hola", "adios"]));
 
 
-function isPowerOf2(num){
+export function isPowerOf2(num){
+    if (num == 1){
+        return true;
+    }
     let power = 1; 
     while (2**power <= num){
         if (2**power == num){
@@ -200,7 +218,7 @@ function isPowerOf2(num){
 console.log("14. PowerOf2: ", isPowerOf2(32));
 
 
-function sortDescending(numList){
+export function sortDescending(numList){
     let sorted = bubbleSort(numList);
     sorted = sorted.reverse();
     return sorted;
