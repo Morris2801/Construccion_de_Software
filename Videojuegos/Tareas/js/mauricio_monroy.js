@@ -33,7 +33,10 @@ console.log("2. BubbleSort: ", bubbleSort([4, 3, 2, 1, 10, 29, 23]));
 
 // 3. invertArray() + invertArrayInplace(): invierte arreglo de números
 export function invertArray(numList){
-    let invertedArray = numList.reverse();
+    let invertedArray = [];
+    for (let i = numList.length -1; i >= 0; i--){
+        invertedArray.push(numList[i]);
+    }
     return invertedArray; 
 }
 console.log("3.1 InvertArray: ", invertArray([4, 3, 2, 1, 10, 29, 23]));
@@ -225,7 +228,7 @@ console.log("14. PowerOf2: ", isPowerOf2(32));
 // 15. sortDescending(): ordena descendientemente lista de números
 export function sortDescending(numList){
     let sorted = bubbleSort(numList);
-    sorted = sorted.reverse();
+    sorted = invertArrayInplace(sorted);
     return sorted;
 }
 console.log("15. SortDescending: ", sortDescending([4, 3, 2, 1, 10, 29, 23]));
