@@ -3,14 +3,13 @@
     color: white;
     align-items: center;
     margin: 10px;
-
     justify-content: center;
     justify-self: center;
   }
   
   body {
       background-color: rgb(48, 48, 48);
-      border-color: rgb(105, 105, 105);
+      border-color: rgb(172, 172, 172);
       border-style: solid;
       border-width: 20px;
       border-radius: 100px;
@@ -40,7 +39,6 @@
     color: white; 
     font-size: 40px; 
     padding: 20px;
-    
   }
   h2{
     margin: 0px;
@@ -48,15 +46,48 @@
     font-size: 25px; 
     padding: 10px;
   }
+  h3{
+    border-right: solid 2px rgb(170, 56, 56);
+    padding: 35px;
+  }
+  h4{
+    border-top: solid 2px rgb(170, 56, 56);
+    padding: 20px;
+    font-size: 30px;
+  }
+  h5{
+    border-bottom: 2px white dotted;
+    font: small-caps bold px/1 Georgia, serif;
+    font-size: 17.5px;
+    align-items:left;
+
+  }
   nav{
     width: 100%;
     height: 100%;
     color:rgb(255, 255, 255);
-    padding: 50px;
+    padding: 45px;
     display: flex;
+    background-color: rgba(61, 61, 61, 0.824);
+    margin: 40px;
+    border-radius: 20px;
+    border: 10px solid white;
   }
   a{
-    color: rgb(194, 246, 255)
+    color: rgb(194, 246, 255);
+    font-weight: bold;
+    font-style: italic;
+  }
+  p{
+    border-left:rgb(255, 255, 255) 2px solid;
+    padding: 20px;
+  }
+  #warning{
+    background-color: darkred;
+    border-radius: 20px;
+    padding: 20px;
+    width: 65%;
+    margin: 20px;
   }
 
   img{
@@ -72,10 +103,11 @@
   }
   table, th, td{
     border: 1px solid white;
+    border-radius: 20px;
   }
   
   header{
-    border: rgb(192, 13, 13) 2px solid; 
+    border: rgb(187, 187, 187) 12px solid; 
     border-radius: 20px; 
     padding: 20px;  
     background-image: url("../images/background.jpg")
@@ -85,8 +117,41 @@
     border-radius: 60px;
     padding: 10px;
   }
-
   footer p{
     font-family:Georgia, 'Times New Roman', Times, serif
   }
-  
+table {
+  width: 60%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 18px;
+  text-align: center;
+  background-color: rgb(33, 33, 33);
+  padding: 20px;
+}
+th, td {
+  padding: 8px;
+  border: 3px solid #ddd;
+}
+th{
+  background-color: rgb(109, 3, 3);
+}
+ul{
+  overflow: auto;
+  height: 7em;
+  width: 60%;
+  background-color: rgb(41, 32, 32);
+  border-radius: 20px;
+  padding: 30px;
+  align-items: left;
+  justify-content: left;
+  list-style: ">>> $ ";
+  font-style: oblique;
+}
+#css{
+  background-color: rgb(41, 32, 32);
+  border-radius: 20px;
+  padding: 30px;
+  align-items: left;
+  justify-content: left;
+}

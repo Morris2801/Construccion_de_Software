@@ -23,15 +23,21 @@ class Box extends GameObject {
 class Ball extends GameObject {
     constructor(position,width,height,color,type){
         super(position,width,height,color, "ball");
-        this.velocity = new Vec(0.25,0.25);
+        this.velocity = new Vec(0.15,0.15);
     }
     update(deltaTime){
         this.position = this.position.plus(this.velocity.times(deltaTime));
     }
     initVelocity(){
+        this.inPlay = true;
         box.position = new Vec(canvasWidth/2, canvasHeight/2);
         let angle = Math.random()*(Math.PI/2) - (Math.PI/4);
         this.velocity = new Vec(Math.cos(angle), Math.sin(angle));
+    }
+    reset(){
+        this.inPlay = false;
+        this.velocity = new Vec(0,0);
+        this.position = new Vec(canvasWidth/2, canvasHeight/2);
     }
 }
 class Paddle extends GameObject {
@@ -84,6 +90,9 @@ function createEventListeners(){
         else if(event.key == 'l' || event.code == 'ArrowDown'){
             rightPaddle.velocity = new Vec(0, paddleVelocity);
         }    
+        if(event.key == 's' && !box.inPlay){
+            box.initVelocity();
+        }
     });
     window.addEventListener('keyup', (event) =>{
         if(event.key == 'q'){
@@ -119,6 +128,8 @@ function drawScene(newTime) {
     box.update(deltaTime);
     leftPaddle.update(deltaTime);
     rightPaddle.update(deltaTime);
+    new TextLabel(50,canvasHeight/2,"60px Arial","white").draw(ctx, leftScore);
+    new TextLabel(canvasWidth-100,canvasHeight/2,"60px Arial","white").draw(ctx, rightScore);
 
     if(boxOverlap(box, leftPaddle) || boxOverlap(box, rightPaddle)){
         box.velocity.x *= -1; 
@@ -130,13 +141,12 @@ function drawScene(newTime) {
     }
     if(boxOverlap(box, leftMarg)){
         rightScore++;
-        box.initVelocity();
+        box.reset();
     }
     if(boxOverlap(box, rightMarg)){
         leftScore++;
-        box.initVelocity();
+        box.reset();
     }  
-    
     oldTime = newTime; 
     requestAnimationFrame(drawScene);
 }
