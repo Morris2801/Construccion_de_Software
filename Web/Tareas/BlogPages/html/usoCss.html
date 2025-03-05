@@ -35,18 +35,95 @@
     </nav>
     <main id="css">
         <h4>Uso de CSS con HTML</h4>
-        <h5>¿Qué es?</h5>
+        <p>Fuente: 
+            <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Styling_the_content" target="_blank">
+                CSS Guide documentation
+            </a>
+        </p>
+        <div id = "cssIntro">
+            <h5>¿Qué es?</h5>
+            <ul>
+                <li>Significa Cascading Style Sheets</li>
+                <li>No es lenguaje de programación</li>
+                <li>Selectivamente estiliza y posiciona elementos HTML</li>
+                <div>
+                    <li>Estructura:</li>
+                    <img id="cssStruct"
+                        src="https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Styling_the_content/css-declaration-small.png"
+                        width=200px>
+                </div>
+            </ul>
+        </div>
+        <br>
+        <br>
+        
+        <div>
+            <h5>Elementos importantes</h5>
+            <table>
+                <tr>
+                    <th>Parte del Ruleset</th>
+                    <th>Descripción</th>
+                </tr>
+                <tr>
+                    <td>Selector:</td>
+                    <td>Define a qué elemento se le aplicará el estilo (admite comas: ul, h1, ...)</td>
+                </tr>
+                <tr>
+                    <td>Declaración</td>
+                    <td>Aclara qué propiedad y qué valor se está aplicando.</td>
+                </tr>
+                <tr>
+                    <td>Propiedad</td>
+                    <td>Especifíca qué atributo o característica de la declaración se está tocando por elemento.</td>
+                </tr>
+                <tr>
+                    <td>Valor</td>
+                    <td>Escoge cómo se modificará el atributo seleccionado por la propiedad.</td>
+                </tr>
+                <tr>
+                    <td>{}</td>
+                    <td>Todo ruleset debe estar entre llaves.</td>
+                </tr>
+                <tr>
+                    <td>:</td>
+                    <td>Toda propiedad debe estar separada de su valor por ":"</td>
+                </tr>
+                <tr>
+                    <td>;</td>
+                    <td>Toda declaración debe estar separada de la siguiente por ";"</td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <br>
+        <div>
+            <h5>Variedad y Jerarquía de selectores</h5>
+            <p>En CSS, para ser más selectivo y específico en cuanto a qué se le está aplicando el estilo, dentro de los tags de un elemento particular se pueden puntualizar grupos o casos únicos a los cuales estilizar de determinada manera.
+                <br><em>Esto es con selectores por Tipo, Clase, e Identificador.</em>
+            </p>
+            <ul>
+                <li>Selector por Tipo</li>
+                    <p>Aplica a todos los tags/elementos del mismo tipo: 
+                        <em>h1, p, a, main, div, nav, ...</em>
+                        No se requiere gran modificación a la sintaxis usual.
+                    </p>
+                <li>Selector por Clase</li>
+                    <p>Asignada a una clase, especificada dentro del tag como atributo <em>h1 class = "clase1"...</em>
+                        <br>Para aplicar a todos los elementos de una clase, se usa un punto antes del nombre de la clase en el css: <em>.clase1 {...}</em>
+                    </p>
+                <li>Selector por Identificador</li>
+                    <p>
+                        Asignada a un solo elemento, especificada dentro del tag como atributo <em>h1 id = "id1"...</em>
+                        <br>Para aplicar a un solo elemento de una clase, se usa un "#" antes del nombre del id en el css: <em>#id1</em>
+                    </p>
+        </div>
+        
 
-
-        <h5>Elementos importantes</h5>
-
-
-        <h5>¿Diferencia?</h5>
     
     
     </main>
     <footer>
-        <p></p>
+        <p>5 / 3 / 2025</p>
     </footer>
 </body>
 </html>

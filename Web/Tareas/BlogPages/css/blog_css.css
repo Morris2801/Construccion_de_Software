@@ -89,8 +89,7 @@
     width: 65%;
     margin: 20px;
   }
-
-  img{
+#gitcat{
     padding: 50px;
     background-color: white;
     border-radius: 50%;
@@ -105,7 +104,6 @@
     border: 1px solid white;
     border-radius: 20px;
   }
-  
   header{
     border: rgb(187, 187, 187) 12px solid; 
     border-radius: 20px; 
@@ -136,7 +134,7 @@ th, td {
 th{
   background-color: rgb(109, 3, 3);
 }
-ul{
+#gitCommands{
   overflow: auto;
   height: 7em;
   width: 60%;
@@ -152,6 +150,27 @@ ul{
   background-color: rgb(41, 32, 32);
   border-radius: 20px;
   padding: 30px;
-  align-items: left;
-  justify-content: left;
+  display:column; 
+  align-content: flex-start;
+  align-items: flex-start;
+}
+#cssIntro{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 10px;
+  align-content: center;
+  background-color: rgb(48, 48, 48);
+  border-radius: 50px;
+}
+#cssStruct{
+  display:flex;
+  justify-content: center;
+}
+#css div ul, #css div ul li{
+  display:column; 
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: flex-start;
+  justify-self: left;
 }
