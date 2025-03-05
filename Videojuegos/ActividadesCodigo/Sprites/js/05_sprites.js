@@ -54,9 +54,9 @@ class Game {
 
     initObjects() {
         this.player = new Player(new Vec(canvasWidth / 2, canvasHeight / 2), 60, 60, "red");
-        //this.player.setSprite('../assets/sprites/link_front.png')
-        //this.player.setSprite('../assets/sprites/blordrough_quartermaster-NESW.png',
-        //                      new Rect(0, 0, 48, 64));
+        this.player.setSprite('../assets/sprites/link_front.png')
+        this.player.setSprite('../assets/sprites/blordrough_quartermaster-NESW.png',
+        new Rect(48, 128, 48, 64));
         this.actors = [];
     }
 
@@ -76,25 +76,25 @@ class Game {
 
     createEventListeners() {
         window.addEventListener('keydown', (event) => {
-            if (event.key == 'w') {
+            if (event.key == 'w' || event.code == 'ArrowUp') {
                 this.player.velocity.y = -playerSpeed;
-            } else if (event.key == 'a') {
+            } else if (event.key == 'a' || event.code == "ArrowLeft") {
                 this.player.velocity.x = -playerSpeed;
-            } else if (event.key == 's') {
+            } else if (event.key == 's' || event.code == 'ArrowDown') {
                 this.player.velocity.y = playerSpeed;
-            } else if (event.key == 'd') {
+            } else if (event.key == 'd' || event.code == 'ArrowRight') {
                 this.player.velocity.x = playerSpeed;
             }
         });
 
         window.addEventListener('keyup', (event) => {
-            if (event.key == 'w') {
+            if (event.key == 'w' || event.code == 'ArrowUp') {
                 this.player.velocity.y = 0;
-            } else if (event.key == 'a') {
+            } else if (event.key == 'a' || event.code == "ArrowLeft") {
                 this.player.velocity.x = 0;
-            } else if (event.key == 's') {
+            } else if (event.key == 's' || event.code == 'ArrowDown') {
                 this.player.velocity.y = 0;
-            } else if (event.key == 'd') {
+            } else if (event.key == 'd' || event.code == 'ArrowRight') {
                 this.player.velocity.x = 0;
             }
         });

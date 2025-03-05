@@ -76,6 +76,8 @@ class GameObject {
     draw(ctx) {
         if (this.spriteImage) {
                 ctx.drawImage(this.spriteImage,
+                                this.spriteRect.x, this.spriteRect.y,
+                                this.spriteRect.width, this.spriteRect.height,
                               this.position.x, this.position.y,
                               this.width, this.height);
                               //this.position.x * scale, this.position.y * scale,

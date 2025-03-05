@@ -10,9 +10,18 @@ const canvasHeight = 700;
 let oldTime;
 const paddleVelocity = 1.25;
 let Score = 0;
-let columns = 6; 
-let rows = 6; 
+let columns = 4; 
+let rows = 14; 
 let bricks = [];
+let colorList = {
+    purple : "rgb(168, 106, 203)",
+    pink : "rgb(221, 98, 214)",
+    red : "rgb(207, 108, 108)",
+    orange : "rgb(210, 165, 101)",
+    yellow : "rgb(180, 188, 89)",
+    green : "rgb(91, 188, 89)",
+    blue : "rgb(89, 188, 188)" 
+}
 
 // Game Objects
 let ctx;
@@ -31,7 +40,7 @@ class Ball extends GameObject {
     }
     initVelocity(){
         this.inPlay = true;
-        box.position = new Vec(canvasWidth/2, canvasHeight/2);
+        box.position = new Vec(canvasWidth/2, canvasHeight*0.75 -20);
         let angle = Math.random()*(5*(Math.PI)/4) - (7*(Math.PI)/4);
         this.velocity = new Vec(Math.cos(angle), Math.abs(Math.sin(angle)));
         this.velocity = this.velocity.times(0.75);
@@ -39,7 +48,7 @@ class Ball extends GameObject {
     reset(){
         this.inPlay = false;
         this.velocity = new Vec(0,0);
-        this.position = new Vec(canvasWidth/2, canvasHeight/2);
+        this.position = new Vec(canvasWidth/2, canvasHeight*0.75 -20);
     }
 }
 class Paddle extends GameObject {
@@ -63,10 +72,10 @@ class Brick extends GameObject {
     }
 }
 
-const box = new Ball(new Vec(canvasWidth/2, canvasHeight*0.75), 20, 20, "white");
-const paddle = new Paddle(new Vec(canvasWidth/2-50, canvasHeight-50), 100,50, "rgb(127, 181, 186)");
-const upMarg = new Box(new Vec(0,0), canvasWidth, 20, "grey");
-const downMarg = new Box(new Vec(0,canvasHeight-20), canvasWidth, 20, "grey");
+const box = new Ball(new Vec(canvasWidth/2, canvasHeight*0.75 -20), 20, 20, "white");
+const paddle = new Paddle(new Vec(canvasWidth/2-50, canvasHeight-50), 100,50, "rgb(255, 255, 255)");
+const upMarg = new Box(new Vec(0,0), canvasWidth, 20, "black");
+const downMarg = new Box(new Vec(0,canvasHeight-20), canvasWidth, 20, "black");
 const leftMarg = new Box(new Vec(0,0), 20, canvasHeight, "black");
 const rightMarg = new Box(new Vec(canvasWidth-20,0), 20, canvasHeight, "black");
 
@@ -107,13 +116,34 @@ function createEventListeners(){
 }
 
 function createBricks() {
-    let brickWidth = canvasWidth / columns;
+    let brickWidth = canvasWidth / columns ;
     let brickHeight = (canvasHeight * 0.49) / rows;
     for (let i = 0; i < columns; i++) {
-        for (let j = 0; j < rows; j++) {
-            let color = ; 
-    
-            let brick = new Brick(new Vec(i * brickWidth, j * brickHeight), brickWidth, brickHeight, color);
+        for (let j = 0; j < rows; j++){
+            let color;
+            if(j == 0 || j == 7){
+                color = colorList.purple;
+            }
+            else if(j == 1 || j == 8){
+                color = colorList.pink;
+            }
+            else if(j == 2 || j == 9){
+                color = colorList.red;
+            }
+            else if(j == 3 || j == 10){
+                color = colorList.orange;
+            }
+            else if(j == 4 || j == 11){
+                color = colorList.yellow;
+            }
+            else if(j == 5 || j == 12){
+                color = colorList.green;
+            }
+            else if(j == 6 || j == 13){
+                color = colorList.blue; 
+            }
+            
+            let brick = new Brick(new Vec(i * brickWidth + 5, j * brickHeight + 5), brickWidth - 10, brickHeight - 10, color);
             bricks.push(brick);
         }
     }
@@ -160,5 +190,6 @@ function drawScene(newTime) {
     });
 
     oldTime = newTime;
+    console.log(oldTime);
     requestAnimationFrame(drawScene);
 }
