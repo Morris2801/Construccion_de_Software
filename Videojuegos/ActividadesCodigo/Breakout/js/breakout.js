@@ -24,6 +24,7 @@ let colorList = {
 }
 let curCombo = 0;
 let maxCombo = 0;
+let runs = 0;
 
 // Game Objects
 let ctx;
@@ -52,6 +53,7 @@ class Ball extends GameObject {
         this.velocity = new Vec(0,0);
         this.position = new Vec(canvasWidth/2, canvasHeight*0.75-100);
         curCombo = 0;
+        runs++;
     }
 }
 class Paddle extends GameObject {
@@ -81,9 +83,10 @@ const upMarg = new Box(new Vec(0,0), canvasWidth, 20, "black");
 const downMarg = new Box(new Vec(0,canvasHeight-20), canvasWidth, 20, "black");
 const leftMarg = new Box(new Vec(0,0), 20, canvasHeight, "black");
 const rightMarg = new Box(new Vec(canvasWidth-20,0), 20, canvasHeight, "black");
-const ActCombo = new TextLabel(canvasWidth*0.10, canvasHeight-70, "20px Arial", "white");
-const MaxCombo = new TextLabel(canvasWidth*0.10, canvasHeight - 50, "20px Arial", "white");
-const ScoreLabel = new TextLabel(canvasWidth*0.10, canvasHeight -30, "20px Arial", "white");
+const ActCombo = new TextLabel(canvasWidth*0.10, canvasHeight-70, "20px Times New Roman", "white");
+const MaxCombo = new TextLabel(canvasWidth*0.10, canvasHeight - 50, "20px Times New Roman", "white");
+const ScoreLabel = new TextLabel(canvasWidth*0.10, canvasHeight -30, "20px Times New Roman", "white");
+const RunLabel = new TextLabel(canvasWidth*0.10, canvasHeight -90, "20px Times New Roman", "white");
 
 function main() {
     // Get a reference to the object with id 'canvas' in the page
@@ -169,6 +172,7 @@ function drawScene(newTime) {
     ActCombo.draw(ctx, "Current Combo: " + curCombo);
     MaxCombo.draw(ctx, "Max Combo: " + maxCombo);
     ScoreLabel.draw(ctx, "Score: " + Score);
+    RunLabel.draw(ctx, "Runs: " + runs);
 
     box.update(deltaTime);
     paddle.update(deltaTime);
