@@ -10,8 +10,8 @@ const canvasHeight = 700;
 let oldTime;
 const paddleVelocity = 1.25;
 let Score = 0;
-let columns = 4; 
-let rows = 14; 
+let columns = 6; 
+let rows = 8; 
 let bricks = [];
 let colorList = {
     purple : "rgb(168, 106, 203)",
@@ -22,6 +22,8 @@ let colorList = {
     green : "rgb(91, 188, 89)",
     blue : "rgb(89, 188, 188)" 
 }
+let curCombo = 0;
+let maxCombo = 0;
 
 // Game Objects
 let ctx;
@@ -40,7 +42,7 @@ class Ball extends GameObject {
     }
     initVelocity(){
         this.inPlay = true;
-        box.position = new Vec(canvasWidth/2, canvasHeight*0.75 -20);
+        box.position = new Vec(canvasWidth/2, canvasHeight*0.75-100);
         let angle = Math.random()*(5*(Math.PI)/4) - (7*(Math.PI)/4);
         this.velocity = new Vec(Math.cos(angle), Math.abs(Math.sin(angle)));
         this.velocity = this.velocity.times(0.75);
@@ -48,7 +50,8 @@ class Ball extends GameObject {
     reset(){
         this.inPlay = false;
         this.velocity = new Vec(0,0);
-        this.position = new Vec(canvasWidth/2, canvasHeight*0.75 -20);
+        this.position = new Vec(canvasWidth/2, canvasHeight*0.75-100);
+        curCombo = 0;
     }
 }
 class Paddle extends GameObject {
@@ -72,13 +75,15 @@ class Brick extends GameObject {
     }
 }
 
-const box = new Ball(new Vec(canvasWidth/2, canvasHeight*0.75 -20), 20, 20, "white");
+const box = new Ball(new Vec(canvasWidth/2, canvasHeight*0.75-100), 20, 20, "white");
 const paddle = new Paddle(new Vec(canvasWidth/2-50, canvasHeight-50), 100,50, "rgb(255, 255, 255)");
 const upMarg = new Box(new Vec(0,0), canvasWidth, 20, "black");
 const downMarg = new Box(new Vec(0,canvasHeight-20), canvasWidth, 20, "black");
 const leftMarg = new Box(new Vec(0,0), 20, canvasHeight, "black");
 const rightMarg = new Box(new Vec(canvasWidth-20,0), 20, canvasHeight, "black");
-
+const ActCombo = new TextLabel(canvasWidth*0.10, canvasHeight-70, "20px Arial", "white");
+const MaxCombo = new TextLabel(canvasWidth*0.10, canvasHeight - 50, "20px Arial", "white");
+const ScoreLabel = new TextLabel(canvasWidth*0.10, canvasHeight -30, "20px Arial", "white");
 
 function main() {
     // Get a reference to the object with id 'canvas' in the page
@@ -161,6 +166,9 @@ function drawScene(newTime) {
     downMarg.draw(ctx);
     leftMarg.draw(ctx);
     rightMarg.draw(ctx);
+    ActCombo.draw(ctx, "Current Combo: " + curCombo);
+    MaxCombo.draw(ctx, "Max Combo: " + maxCombo);
+    ScoreLabel.draw(ctx, "Score: " + Score);
 
     box.update(deltaTime);
     paddle.update(deltaTime);
@@ -168,6 +176,7 @@ function drawScene(newTime) {
     if (boxOverlap(box, paddle)) {
         box.velocity.y *= -1;
         box.velocity = box.velocity.times(1.01);
+        curCombo = 0;
     }
     if (boxOverlap(box, rightMarg) || boxOverlap(box, leftMarg)) {
         box.velocity.x *= -1;
@@ -183,13 +192,15 @@ function drawScene(newTime) {
         if (boxOverlap(box, brick)) {
             box.velocity.y *= -1;
             //box.velocity.x *=-1;
-            Score += 1;
+            Score += 100;
+            curCombo++;
             return false;
         }
         return true;
     });
-
+    if(curCombo > maxCombo){
+        maxCombo = curCombo;
+    }
     oldTime = newTime;
-    console.log(oldTime);
     requestAnimationFrame(drawScene);
 }
