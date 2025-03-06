@@ -6,7 +6,7 @@ header{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(25, 25, 46);
+    background-color: #27404A;
     color: white;
 }
 header h1{
@@ -23,7 +23,7 @@ body{
     margin: 0px;
 }
 #orange{
-    background-color: rgb(215, 139, 39);
+    background-color: #B67E38;
     display: block;
     color: white;
     padding: 70px;
@@ -35,7 +35,7 @@ body{
 #newsletter{
     display: flex;
     justify-content: center;
-    background-color:  rgb(25, 25, 46);
+    background-color:  #27404A;
     color: white;
     padding: 15px;
 }
@@ -56,12 +56,12 @@ body{
     align-items: center;
 }
 button{
-    background-color: rgb(215, 139, 39);
+    background-color: #B67E38;
     color: white;
     text-align: center;
 }
 footer{
-    background-color:rgb(25, 25, 46);
+    background-color:#27404A;
     color: white;
     padding: 20px;
     display: flex;
