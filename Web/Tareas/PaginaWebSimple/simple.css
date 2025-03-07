@@ -10,11 +10,13 @@ header{
     color: white;
 }
 header h1{
-    padding-left: 50px;
+    padding-left: 100px;
+    font-size: 1.75em;
 }
 header nav{
     display:flex;
     margin: 18.72px;
+    padding-right: 150px;
 }
 a{
     padding: 20px;
@@ -24,13 +26,23 @@ body{
 }
 #orange{
     background-color: #B67E38;
-    display: block;
+    display: column;
     color: white;
     padding: 70px;
     justify-content: center;
+    align-items: center;
 }
 #orange h2{
     text-align: center;
+    font-size: 3em;
+}
+#orange p{
+    width: 70%;
+    display:block;
+    text-align: left;
+    align-items: center;
+    justify-self: center;
+
 }
 #newsletter{
     display: flex;
@@ -38,6 +50,10 @@ body{
     background-color:  #27404A;
     color: white;
     padding: 15px;
+
+}
+#newsletter h3{
+    padding-right: 50px;
 }
 #newsletter form{
     margin: 16px;
@@ -48,12 +64,16 @@ body{
     display: flex;
     justify-content: space-evenly;
     align-content: center;
-    padding: 50px;
+    padding: 40px;
 }
 #images div{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+#images div p{
+    font-size: 0.7em;
+    width: 100%;
 }
 button{
     background-color: #B67E38;
