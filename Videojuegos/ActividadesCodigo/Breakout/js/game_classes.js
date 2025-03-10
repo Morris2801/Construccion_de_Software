@@ -17,7 +17,14 @@ class Vec {
     }
 }
 
- 
+class Rect {
+    constructor(x, y, width, height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+}
 // let a = new Vec(3,7);
 // let b = new Vec(-2,5);
 // console.log("plus", a.plus(b));
@@ -26,19 +33,40 @@ class Vec {
 // console.log("magnitude", a.magnitude());
 
 class GameObject{
-    constructor(position,width,height,color,type){
+    constructor(position, width, height, color, type) {
         this.position = position;
         this.width = width;
         this.height = height;
         this.color = color;
         this.type = type;
-    }
-    draw(ctx){
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-    }
-    update(){
 
+        // Sprite properties
+        this.spriteImage = undefined;
+        this.spriteRect = undefined;
+    }
+
+    setSprite(imagePath, rect) {
+        this.spriteImage = new Image();
+        this.spriteImage.src = imagePath;
+        if (rect) {
+            this.spriteRect = rect;
+        }
+    }
+
+    draw(ctx) {
+        if (this.spriteImage) {
+                ctx.drawImage(this.spriteImage,
+                                this.spriteRect.x, this.spriteRect.y,
+                                this.spriteRect.width, this.spriteRect.height,
+                              this.position.x, this.position.y,
+                              this.width, this.height);
+                              //this.position.x * scale, this.position.y * scale,
+                              //this.width * scale, this.height * scale);
+        } else {
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.position.x, this.position.y,
+                         this.width, this.height);
+        }
     }
 }
 

@@ -25,6 +25,7 @@ let colorList = {
 let curCombo = 0;
 let maxCombo = 0;
 let runs = 0;
+let blockCount = 0; 
 
 // Game Objects
 let ctx;
@@ -34,24 +35,38 @@ class Box extends GameObject {
     }
 }
 class Ball extends GameObject {
-    constructor(position,width,height,color,type){
-        super(position,width,height,color, "ball");
-        this.velocity = new Vec(0.15,0.15);
+    constructor(position, width, height, color, type) {
+        super(position, width, height, color, "ball");
+        this.velocity = new Vec(0.15, 0.15);
+        this.image = new Image();
+        this.image.src = "../assets/spidermanLogo.png";
     }
-    update(deltaTime){
+
+    update(deltaTime) {
         this.position = this.position.plus(this.velocity.times(deltaTime));
     }
-    initVelocity(){
+
+    draw(ctx) {
+        if (this.image.complete) {
+            ctx.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
+        } else {
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+        }
+    }
+
+    initVelocity() {
         this.inPlay = true;
-        box.position = new Vec(canvasWidth/2, canvasHeight*0.75-100);
-        let angle = Math.random()*(5*(Math.PI)/4) - (7*(Math.PI)/4);
+        this.position = new Vec(canvasWidth / 2, canvasHeight * 0.75 - 100);
+        let angle = Math.random() * (5 * (Math.PI) / 4) - (7 * (Math.PI) / 4);
         this.velocity = new Vec(Math.cos(angle), Math.abs(Math.sin(angle)));
         this.velocity = this.velocity.times(0.75);
     }
-    reset(){
+
+    reset() {
         this.inPlay = false;
-        this.velocity = new Vec(0,0);
-        this.position = new Vec(canvasWidth/2, canvasHeight*0.75-100);
+        this.velocity = new Vec(0, 0);
+        this.position = new Vec(canvasWidth / 2, canvasHeight * 0.75 - 100);
         curCombo = 0;
         runs++;
     }
@@ -77,16 +92,17 @@ class Brick extends GameObject {
     }
 }
 
-const box = new Ball(new Vec(canvasWidth/2, canvasHeight*0.75-100), 20, 20, "white");
+const box = new Ball(new Vec(canvasWidth/2, canvasHeight*0.75-100), 40, 40, "white");
 const paddle = new Paddle(new Vec(canvasWidth/2-50, canvasHeight-50), 100,50, "rgb(255, 255, 255)");
 const upMarg = new Box(new Vec(0,0), canvasWidth, 20, "black");
 const downMarg = new Box(new Vec(0,canvasHeight-20), canvasWidth, 20, "black");
 const leftMarg = new Box(new Vec(0,0), 20, canvasHeight, "black");
 const rightMarg = new Box(new Vec(canvasWidth-20,0), 20, canvasHeight, "black");
-const ActCombo = new TextLabel(canvasWidth*0.10, canvasHeight-70, "20px Times New Roman", "white");
-const MaxCombo = new TextLabel(canvasWidth*0.10, canvasHeight - 50, "20px Times New Roman", "white");
-const ScoreLabel = new TextLabel(canvasWidth*0.10, canvasHeight -30, "20px Times New Roman", "white");
-const RunLabel = new TextLabel(canvasWidth*0.10, canvasHeight -90, "20px Times New Roman", "white");
+const ActCombo = new TextLabel(canvasWidth*0.10, canvasHeight-80, "20px Times New Roman", "white");
+const MaxCombo = new TextLabel(canvasWidth*0.10, canvasHeight - 60, "20px Times New Roman", "white");
+const ScoreLabel = new TextLabel(canvasWidth*0.10, canvasHeight -40, "20px Times New Roman", "white");
+const RunLabel = new TextLabel(canvasWidth*0.10, canvasHeight -100, "20px Times New Roman", "white");
+const count = new TextLabel(canvasWidth*0.10, canvasHeight - 120, "20px Times New Roman", "white");
 
 function main() {
     // Get a reference to the object with id 'canvas' in the page
@@ -173,6 +189,7 @@ function drawScene(newTime) {
     MaxCombo.draw(ctx, "Max Combo: " + maxCombo);
     ScoreLabel.draw(ctx, "Score: " + Score);
     RunLabel.draw(ctx, "Runs: " + runs);
+    count.draw(ctx, "Blocks: " + blockCount);
 
     box.update(deltaTime);
     paddle.update(deltaTime);
@@ -181,6 +198,10 @@ function drawScene(newTime) {
         box.velocity.y *= -1;
         box.velocity = box.velocity.times(1.01);
         curCombo = 0;
+        paddle.color = "red";
+    }
+    if (!(boxOverlap(box, paddle))) {
+        paddle.color = "white";
     }
     if (boxOverlap(box, rightMarg) || boxOverlap(box, leftMarg)) {
         box.velocity.x *= -1;
@@ -198,6 +219,7 @@ function drawScene(newTime) {
             //box.velocity.x *=-1;
             Score += 100;
             curCombo++;
+            blockCount++;
             return false;
         }
         return true;
