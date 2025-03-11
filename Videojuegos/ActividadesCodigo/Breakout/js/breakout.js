@@ -26,6 +26,7 @@ let curCombo = 0;
 let maxCombo = 0;
 let runs = 0;
 let blockCount = 0; 
+let lives = 3; 
 
 // Game Objects
 let ctx;
@@ -103,6 +104,8 @@ const MaxCombo = new TextLabel(canvasWidth*0.10, canvasHeight - 60, "20px Times 
 const ScoreLabel = new TextLabel(canvasWidth*0.10, canvasHeight -40, "20px Times New Roman", "white");
 const RunLabel = new TextLabel(canvasWidth*0.10, canvasHeight -100, "20px Times New Roman", "white");
 const count = new TextLabel(canvasWidth*0.10, canvasHeight - 120, "20px Times New Roman", "white");
+const livesLabel = new TextLabel(canvasWidth*0.10, canvasHeight - 140, "20px Times New Roman", "white");
+const GameOver = new TextLabel(canvasWidth/3, canvasHeight/2, "70px Times New Roman", "white");
 
 function main() {
     // Get a reference to the object with id 'canvas' in the page
@@ -190,6 +193,7 @@ function drawScene(newTime) {
     ScoreLabel.draw(ctx, "Score: " + Score);
     RunLabel.draw(ctx, "Runs: " + runs);
     count.draw(ctx, "Blocks: " + blockCount);
+    livesLabel.draw(ctx, "Lives: " + lives);
 
     box.update(deltaTime);
     paddle.update(deltaTime);
@@ -210,6 +214,7 @@ function drawScene(newTime) {
         box.velocity.y *= -1;
     }
     if (boxOverlap(box, downMarg)) {
+        lives--;
         box.reset();
     }
 
@@ -224,6 +229,13 @@ function drawScene(newTime) {
         }
         return true;
     });
+    
+    if (bricks.length == 0 || lives == 0) {
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+        GameOver.draw(ctx, "Game Over");
+        return;
+    }
+
     if(curCombo > maxCombo){
         maxCombo = curCombo;
     }
