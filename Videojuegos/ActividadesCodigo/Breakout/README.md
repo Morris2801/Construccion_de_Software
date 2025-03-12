@@ -27,3 +27,11 @@ _Date: 12/marzo/2025_
 | Move Paddle Right | `RightArrow` / `d` |
 | Start Game | `Spacebar` |
 | Continue Game | `s` |
+
+---
+
+## Rules & Objective
+
+1. Break all Blocks by making the Ball bounce in different trajectories from the Paddle. When all Blocks are broken, the player wins and the game ends.
+2. Move the Paddle sideways to preven tthe Ball from hitting the lower screen border (the upper and side margins are allowed, and the ball will bounce from them)
+3. The player has 3 attempts to break all bricks without having the Ball touch the lower border. If said border is touched, an attemp twill be substracted
