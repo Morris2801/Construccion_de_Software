@@ -27,6 +27,8 @@ let maxCombo = 0;
 let runs = 0;
 let blockCount = 0; 
 let lives = 3; 
+let startTime = null; 
+let gameStarted = false; 
 
 // Game Objects
 let ctx;
@@ -38,9 +40,10 @@ class Box extends GameObject {
 class Ball extends GameObject {
     constructor(position, width, height, color, type) {
         super(position, width, height, color, "ball");
-        this.velocity = new Vec(0.15, 0.15);
+        this.velocity = new Vec(0.1, 0.1);
         this.image = new Image();
         this.image.src = "../assets/spidermanLogo.png";
+        this.inPlay = false;
     }
 
     update(deltaTime) {
@@ -70,6 +73,7 @@ class Ball extends GameObject {
         this.position = new Vec(canvasWidth / 2, canvasHeight * 0.75 - 100);
         curCombo = 0;
         runs++;
+        startTime = null; // Reset the start time
     }
 }
 class Paddle extends GameObject {
@@ -106,6 +110,7 @@ const RunLabel = new TextLabel(canvasWidth*0.10, canvasHeight -100, "20px Times 
 const count = new TextLabel(canvasWidth*0.10, canvasHeight - 120, "20px Times New Roman", "white");
 const livesLabel = new TextLabel(canvasWidth*0.10, canvasHeight - 140, "20px Times New Roman", "white");
 const GameOver = new TextLabel(canvasWidth/3, canvasHeight/2, "70px Times New Roman", "white");
+const TimeLabel = new TextLabel(canvasWidth*0.10, canvasHeight - 160, "20px Times New Roman", "white"); // Time label
 
 function main() {
     // Get a reference to the object with id 'canvas' in the page
@@ -129,6 +134,11 @@ function createEventListeners(){
             paddle.velocity = new Vec(paddleVelocity, 0);
         }
         if(event.key == 's' && !box.inPlay){
+            box.initVelocity();
+        }
+        if(event.key == ' ' && !gameStarted){
+            gameStarted = true;
+            startTime = performance.now();
             box.initVelocity();
         }
     });
@@ -175,7 +185,13 @@ function createBricks() {
         }
     }
 }
+
 function drawScene(newTime) {
+    if (!gameStarted) {
+        requestAnimationFrame(drawScene);
+        return;
+    }
+
     if (oldTime == undefined) {
         oldTime = newTime;
     }
@@ -194,6 +210,11 @@ function drawScene(newTime) {
     RunLabel.draw(ctx, "Runs: " + runs);
     count.draw(ctx, "Blocks: " + blockCount);
     livesLabel.draw(ctx, "Lives: " + lives);
+
+    if (box.inPlay) {
+        let elapsedTime = ((newTime - startTime) / 1000).toFixed(2);
+        TimeLabel.draw(ctx, "Time: " + elapsedTime + "s");
+    }
 
     box.update(deltaTime);
     paddle.update(deltaTime);
@@ -230,7 +251,12 @@ function drawScene(newTime) {
         return true;
     });
     
-    if (bricks.length == 0 || lives == 0) {
+    if (bricks.length == 0) {
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+        GameOver.draw(ctx, "Victory!");
+        return;
+    }
+    if (lives == 0) {
         ctx.clearRect(0, 0, canvasWidth, canvasHeight);
         GameOver.draw(ctx, "Game Over");
         return;
