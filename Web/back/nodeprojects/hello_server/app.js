@@ -30,8 +30,8 @@ app.get('/person', (req, res) =>{
     console.log("Hello Server")
     
     const person = {
-        name : "Mau", 
-        email : "mauriciomonroyg@hotmail.com", 
+        name : "", 
+        email : "", 
         message: "Hello world from server"
     }
     
