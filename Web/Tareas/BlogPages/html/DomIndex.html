@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="../css/eventos_dom.css">
+    <link type="text/css" rel="stylesheet" href = "../css/blog_css.css">
+    <script type="module" src="../js/eventos_dom.js"></script>
+    <title>Eventos y Dom</title>
+</head>
+
+<body>
+    <header>
+        <div id="headerContainer">
+            <h1><strong>Actividad HTML: DOM</strong></h1>
+        </div>
+        <div id="header2Container">
+            <h2><em>Blog de Mauricio Monroy</em></h2>
+        </div>
+    </header>
+    <nav>
+        <h3>Páginas</h3>
+        <ol>
+            <li>
+                <a href="blog.html" target="_blank">Inicio</a>
+            </li>
+            <li>
+                <a href="usoGit.html" target="_blank">Uso de Git y GitHub</a>
+            </li>
+            <li>
+                <a href="terminal.html" target="_blank">Terminal</a>
+            </li>
+            <li>
+                <a href="usoCss.html" target="_blank">Uso de CSS</a>
+            </li>
+            <li>
+                <a href="DomIndex.html" target ="_blank">Uso de DOM</a>
+            </li>
+        </ol>
+    </nav>
+    <h1>Eventos y DOM y ChatGPT</h1>
+
+    <div class="container">
+        <h2>Instrucciones</h2>
+        <p>Utiliza ChatGPT y github Copilot para resolver la siguiente actividad. Antes de hacer los ejercicios, contesta las siguientes preguntas. Pregúntale a ChatGPT las preguntas, y verifica que lo que haya generado es correcto. Cuando sea necesario, agrega un ejemplo de código. Incluye una fuente que valide o invalide lo que generó. Agrega elementos de HTML con tus respuestas. (<b>Protip</b>: usa ChatGPT para que las respuestas las ponga directamente en elementos de html.)</p>
+
+        <p>Terminando las preguntas y los ejercicios, documenta tu experiencia con las herramientas en la sección de conclusiones. </p>
+    </div>
+
+    <div class="container">
+        <h3>Preguntas</h3>
+        <ol>
+            <li>¿Qué es el DOM?</li>
+                <p>El DOM (Modelo de Objeto del Documento) es una representación en forma de árbol de un documento HTML. Permite que lenguajes de programación como JavaScript interactúen y manipulen los elementos de manera dinámica.</p>
+                <a href="https://www.entredata.org/aprendiendo-javascript/manipulacion-del-dom-con-javascript-de-lo-basico-a-lo-avanzado?utm_source=chatgpt.com">Fuente</a>
+            <li>¿Qué es un nodo?</li>
+                <p>Un nodo es cualquier componente del árbol del DOM. Puede representar diferentes partes del documento, como elementos HTML, atributos, texto y comentarios. Los principales tipos de nodos incluyen nodos de elementos (div, p, span, etc.), nodos de texto y nodos de atributos.</p>
+                <a href="https://bigcode.es/manipulacion-de-elementos-del-dom-con-javascript/?utm_source=chatgpt.com">Fuente</a>
+            <li>¿Cómo se accede a un elemento del DOM?</li>
+                <p>Puedes acceder a un elemento del DOM utilizando métodos de JavaScript como:</p>
+                <ol>
+                    <li> document.getElementById("id") → Selecciona un elemento por su ID.</li>
+                    <li> document.getElementsByClassName("class") → Selecciona elementos por su nombre de clase.</li>
+                    <li> document.getElementsByTagName("tag") → Selecciona elementos por su nombre de etiqueta.</li>
+                    <li> document.querySelector("selector") → Selecciona el primer elemento que coincide con un selector CSS.</li>
+                    <li> document.querySelectorAll("selector") → Selecciona todos los elementos que coinciden con un selector CSS.</li>                    
+                </ol>
+                <a href="https://bigcode.es/manipulacion-de-elementos-del-dom-con-javascript/?utm_source=chatgpt.com">Fuente</a>
+            <li>¿Cómo se modifica un elemento del DOM?</li>
+                <p>Puedes modificar un elemento del DOM cambiando sus propiedades, contenido o atributos utilizando JavaScript. Algunos ejemplos:</p>
+                <code>
+                    let element = document.getElementById("myElement");
+                    element.innerHTML = "Nuevo contenido"; // Cambia el contenido interno
+                    element.style.color = "red"; // Modifica el estilo
+                    element.setAttribute("class", "nuevaClase"); // Modifica un atributo
+                </code>
+                <a href = "https://www.machinet.net/tutorial-es/manipulate-dom-efficiently-vanilla-javascript">Fuente</a>
+            <li>¿Cuál es la diferencia entre getElementby* y querySelector*?</li>
+                <p>Los métodos <code>getElementBy*</code> (como <code>getElementById</code>, <code>getElementsByClassName</code>, etc.) son más antiguos y están diseñados para seleccionar elementos específicos por ID, clase o etiqueta. Por otro lado, <code>querySelector</code> y <code>querySelectorAll</code> son más modernos y permiten seleccionar elementos utilizando cualquier selector CSS, ofreciendo mayor flexibilidad.</p>
+                <a href="https://www.machinet.net/tutorial-es/manipulate-dom-efficiently-vanilla-javascript">Fuente</a>
+        </ol>
+        <aside><p>Realizado con ChatGPT4.0 y GitHub Copilot</p></aside>        
+    </div>
+
+    <div class="container">
+        <h3>Diferencias entre getElementBy* y querySelector*</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Criterio</th>
+                    <th>getElementBy*</th>
+                    <th>querySelector*</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Compatibilidad</td>
+                    <td>Compatibles con navegadores más antiguos.</td>
+                    <td>Compatibles con navegadores modernos.</td>
+                </tr>
+                <tr>
+                    <td>Selector</td>
+                    <td>Selecciona elementos por ID, clase o etiqueta específica.</td>
+                    <td>Utiliza cualquier selector CSS válido.</td>
+                </tr>
+                <tr>
+                    <td>Retorno</td>
+                    <td>
+                        <ul>
+                            <li><code>getElementById</code>: Retorna un único elemento.</li>
+                            <li><code>getElementsByClassName</code> y <code>getElementsByTagName</code>: Retornan una colección HTML.</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li><code>querySelector</code>: Retorna el primer elemento que coincide con el selector.</li>
+                            <li><code>querySelectorAll</code>: Retorna una NodeList con todos los elementos que coinciden.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Flexibilidad</td>
+                    <td>Menos flexible, ya que solo permite seleccionar por ID, clase o etiqueta.</td>
+                    <td>Más flexible, ya que permite usar combinaciones complejas de selectores CSS.</td>
+                </tr>
+                <tr>
+                    <td>Uso común</td>
+                    <td>Útil para seleccionar elementos específicos de manera directa.</td>
+                    <td>Útil para seleccionar elementos con selectores complejos o múltiples condiciones.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Ejercicios de código</h3>
+    <p>Usa ChatGPT y copilot para resolver los ejercicios. Por cada ejercicio, pídele a ChatGPT o a copilot que te genere los comentarios. Verifica los resultados antes de subirlos a tu repo.</p>
+
+    <div class="container">
+        <p>1. Modifica el siguiente elemento para mostrar la posición del mouse en el documento:</p>
+        <p id="mousePosition">Posición del mouse: </p>
+        <script>
+            // Seleccionamos el elemento donde mostraremos la posición del mouse
+            const mousePositionElement = document.getElementById('mousePosition');
+
+            // Agregamos un listener al evento 'mousemove' para capturar la posición del mouse
+            document.addEventListener('mousemove', (event) => {
+                // Actualizamos el contenido del elemento con las coordenadas del mouse
+                mousePositionElement.textContent = `Posición del mouse: X=${event.clientX}, Y=${event.clientY}`;
+            });
+        </script>
+    </div>
+
+    <div class="container">
+        <p>2. Al dar click al siguiente botón, obtén el nombre y apellido de las siguientes cajas de texto, y agrega, después del botón, un elemento que tenga el nombre completo.</p>
+        <form id="form1">
+            First name: <input id="form-fname" type="text" name="fname" ><br>
+            Last name: <input id="form-lname" type="text" name="lname" ><br><br>
+        <input id="form1-submit" type="submit" value="Submit">
+        </form>
+        <script>
+            // Seleccionamos el formulario y el botón de submit
+            const form = document.getElementById('form1');
+            const submitButton = document.getElementById('form1-submit');
+
+            // Agregamos un listener al evento 'submit' del formulario
+            form.addEventListener('submit', (event) => {
+                event.preventDefault(); // Prevenimos el comportamiento por defecto del formulario
+
+                // Obtenemos los valores de los inputs
+                const firstName = document.getElementById('form-fname').value;
+                const lastName = document.getElementById('form-lname').value;
+
+                // Creamos un nuevo elemento para mostrar el nombre completo
+                const fullNameElement = document.createElement('p');
+                fullNameElement.textContent = `Nombre completo: ${firstName} ${lastName}`;
+
+                // Insertamos el nuevo elemento después del botón
+                submitButton.insertAdjacentElement('afterend', fullNameElement);
+            });
+        </script>
+    </div>
+
+    <div class="container">
+        <p>3. Agrega el código para agregar una fila, o una columna, a la siguiente tabla al dar click al botón correspondiente.</p>
+        <table id="sampleTable">
+            <tr>
+                <td>Row 1 column 1</td>
+                <td>Row 1 column 2</td>
+            </tr>
+            <tr>
+                <td>Row 2 column 1</td>
+                <td>Row 2 column 2</td>
+            </tr>
+        </table><br>
+        <input id="btn-insert-r" type="button" value="Insert row">
+        <input id="btn-insert-c" type="button" value="Insert column">
+        <script>
+            // Seleccionamos los botones y la tabla
+            const table = document.getElementById('sampleTable');
+            const insertRowButton = document.getElementById('btn-insert-r');
+            const insertColumnButton = document.getElementById('btn-insert-c');
+
+            // Agregamos una fila al final de la tabla
+            insertRowButton.addEventListener('click', () => {
+                const newRow = table.insertRow(); // Creamos una nueva fila
+                const columnCount = table.rows[0].cells.length; // Obtenemos el número de columnas
+
+                // Agregamos celdas a la nueva fila
+                for (let i = 0; i < columnCount; i++) {
+                    const newCell = newRow.insertCell();
+                    newCell.textContent = `Row ${table.rows.length}, Column ${i + 1}`; // Mostramos la fila y columna
+                }
+            });
+
+            // Agregamos una columna a cada fila de la tabla
+            insertColumnButton.addEventListener('click', () => {
+                for (let rowIndex = 0; rowIndex < table.rows.length; rowIndex++) {
+                    const row = table.rows[rowIndex];
+                    const newCell = row.insertCell(); // Agregamos una nueva celda
+                    newCell.textContent = `Row ${rowIndex + 1}, Column ${row.cells.length}`; // Mostramos la fila y columna
+                }
+            });
+        </script>
+    </div>
+
+    <div class="container">
+        <p>4. Incluye dos cajas de input, para solicitar al usuario la posición de la fila y columna de la siguiente tabla, y otra para solicitar un texto. Al apretar el botón, actualiza el contenido de esa tabla en la posición que solicitaste, con la cadena de texto que solicitaste.</p>
+        <table id="myTable">
+            <tr>
+                <td>Row1 cell1</td>
+                <td>Row1 cell2</td>
+                <td>Row1 cell3</td>
+            </tr>
+            <tr>
+                <td>Row2 cell1</td>
+                <td>Row2 cell2</td>
+                <td>Row2 cell3</td>
+            </tr>
+            <tr>
+                <td>Row3 cell1</td>
+                <td>Row3 cell2</td>
+                <td>Row3 cell3</td>
+            </tr>
+            </table><form><br>
+            <input id="rowIndex" type="text" placeholder="Row Index">
+            <input id="colIndex" type="text" placeholder="Col Index">
+            <input id="newValue" type="text" placeholder="New Value">
+            <input id="btn-change" type="button" value="Change content">
+        <script>
+            // Seleccionamos los inputs y el botón
+            const rowIndexInput = document.getElementById('rowIndex');
+            const colIndexInput = document.getElementById('colIndex');
+            const newValueInput = document.getElementById('newValue');
+            const changeContentButton = document.getElementById('btn-change');
+            const myTable = document.getElementById('myTable');
+
+            // Cambiamos el contenido de la celda especificada
+            changeContentButton.addEventListener('click', () => {
+                const rowIndex = parseInt(rowIndexInput.value) - 1; // Convertimos a índice (base 0)
+                const colIndex = parseInt(colIndexInput.value) - 1;
+                const newValue = newValueInput.value;
+
+                // Validamos que la celda exista
+                if (myTable.rows[rowIndex] && myTable.rows[rowIndex].cells[colIndex]) {
+                    myTable.rows[rowIndex].cells[colIndex].textContent = newValue;
+                } else {
+                    alert('La celda especificada no existe.');
+                }
+            });
+        </script>
+    </div>
+
+    <div class="container">
+        <p>5. Agrega el código para quitar o agregar elementos a la lista de opciones. Los colores pueden ser aleatorios o ingresados manualmente.</p>
+        <form>
+            <select id="colorSelect">
+                <option>Red</option>
+                <option>Green</option>
+                <option>White</option>
+                <option>Black</option>
+            </select>
+            <input id="manualColor" type="text" placeholder="Enter a color (e.g., blue or #123456)">
+            <input id="btn-add-color" type="button" value="Add color">
+            <input id="btn-add-random" type="button" value="Add random color">
+            <input id="btn-rmv-color" type="button" value="Remove selected color">
+        </form>
+        <script>
+            // Seleccionamos los elementos necesarios
+            const colorSelect = document.getElementById('colorSelect');
+            const manualColorInput = document.getElementById('manualColor');
+            const addColorButton = document.getElementById('btn-add-color');
+            const addRandomColorButton = document.getElementById('btn-add-random');
+            const removeColorButton = document.getElementById('btn-rmv-color');
+
+            // Agregar un color ingresado manualmente
+            addColorButton.addEventListener('click', () => {
+                const manualColor = manualColorInput.value.trim(); // Obtenemos el valor del input
+                if (manualColor) {
+                    const newOption = document.createElement('option');
+                    newOption.textContent = manualColor;
+                    colorSelect.appendChild(newOption);
+                    manualColorInput.value = ''; // Limpiamos el input
+                } else {
+                    alert('Por favor, ingresa un color válido.');
+                }
+            });
+
+            // Agregar un color aleatorio
+            addRandomColorButton.addEventListener('click', () => {
+                const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`; // Generamos un color aleatorio
+                const newOption = document.createElement('option');
+                newOption.textContent = randomColor;
+                colorSelect.appendChild(newOption);
+            });
+
+            // Quitar el color seleccionado
+            removeColorButton.addEventListener('click', () => {
+                const selectedOption = colorSelect.selectedIndex;
+                if (selectedOption !== -1) {
+                    colorSelect.remove(selectedOption);
+                } else {
+                    alert('Por favor, selecciona un color para eliminar.');
+                }
+            });
+        </script>
+    </div>
+
+    <div class="container">
+        <p>6. Al poner el mouse encima de la siguiente imagen, genera dos números aleatorios entre 300 y 600 para el width y height de una imagen. Reemplaza la imagen de placeholder por otra similar con el tamaño random que generaste. El evento solo se dispara cuando el mouse entra en la imagen.</p>
+        <img id="imagenGato" src="http://placekitten.com/200/300">
+        <script>
+            // Seleccionamos la imagen
+            const imagenGato = document.getElementById('imagenGato');
+
+            // Cambiamos el tamaño de la imagen al pasar el mouse
+            imagenGato.addEventListener('mouseenter', () => {
+                // Generamos un ancho y alto aleatorios entre los valores válidos (300, 400, 500, 600)
+                const validSizes = [300, 400, 500, 600];
+
+                // Función para intentar cargar una imagen válida
+                const loadValidImage = () => {
+                    const randomWidth = validSizes[Math.floor(Math.random() * validSizes.length)];
+                    const randomHeight = validSizes[Math.floor(Math.random() * validSizes.length)];
+                    const newSrc = `https://placecats.com/${randomWidth}/${randomHeight}`;
+
+                    // Creamos una nueva imagen para verificar si se carga correctamente
+                    const testImage = new Image();
+                    testImage.src = newSrc;
+
+                    // Cuando la imagen se carga correctamente, actualizamos el src de la imagen principal
+                    testImage.onload = () => {
+                        imagenGato.src = newSrc;
+                        console.log(`Nueva imagen cargada: ${randomWidth}x${randomHeight}`);
+                    };
+
+                    // Si la imagen no se carga, intentamos nuevamente
+                    testImage.onerror = () => {
+                        console.log(`Error al cargar la imagen: ${randomWidth}x${randomHeight}. Intentando nuevamente...`);
+                        loadValidImage();
+                    };
+                };
+
+                // Iniciamos el proceso de carga de una imagen válida
+                loadValidImage();
+            });
+        </script>
+    </div>
+
+    <div class="container">
+        <h2>Conclusiones</h2>
+        <h4>Experiencia general</h4>
+            <p>
+            Al utilizar ChatGPT y GitHub Copilot para contestar las preguntas y resolver los ejercicios, fue mucho más eficiente y rápida la resolución de las tareas.
+            La capacidad de ChatGPT para generar explicaciones claras y ejemplos de código fue muy útil, especialmente al abordar conceptos complejos del DOM (los cuáles utilizabamos pero probablemente no comprendíamos). 
+            Por otro lado, GitHub Copilot ayudó completando los ejecicios de programación, estructurando hasta un <code>.css</code> ajustado al mismo <code>.html</code>.
+            Poco a poco verificar lo realizado, tratar de entenderlo, y poder arreglar errores o inconsistencias, al igual que mezclando conocimiento propio con la visión personal de la solución es efectivo para aprender y practicar distintos conocimientos de manera dinámica.
+            </p>
+        <h4>¿Cuándo y para qué usarías ChatGPT y cuándo Copilot?</h4>
+            <p>
+            Yo consisdero ChatGPT como una herramienta más creativa, particulamente pensando en texto. 
+            Ya sea traduciendo, parafraseando, o generando ideas, sus resultados me parecen más aptos y flexibles, mientras que con GitHub Copilot puedo aprovechar las opciones de autocompletar y vinculación de distintos archivos fuente para su interpretación de fuentes y lograr una interpretación de contexto más completa al momento de codificar. 
+            Asimismo, ya que tengo entendido que está diseñado a partir de bases de datos especializadas en programación, me parece que sus soluciones son más centradas en la tarea.
+            La opción un poco más completa, desde mi perspectiva, es Copilot de Microsoft, ya que también funciona bastante bien para generación de imágenes (antes de probar el nuevo modelo de ChatGPT).
+            </p>
+        <h4>Ventajas de usar AI para programar</h4>
+            <p>Para mí, utilizar Inteligencia Artificial para programar es más un recurso, así como al escribir a papel un diccionario sirve de apoyo. 
+            La AI puede ayudar a generar ideas, optimizar código, y resolver problemas de manera más rápida y eficiente, pero sin saber qué se está haciendo, si la herramienta comete un error, no se sabrá qué es o cómo solucionarlo. Por eso, prefiero a la par entender qué se está haciendo, y también primero resolver la tarea por mi cuenta antes de recurrir a tal modelo.
+            </p>
+        <h4>Desventajas de usar AI para programar</h4>
+            <p>No obstante, el uso desmedido del recurso puede resultar contraproducente, ya que de vez en cuando llego a tener el impulso de querer solucionarlo todo con apoyo en una IA. De igual forma, a veces se llega a una solución sin entenderla por completo, contradiciendo el propósito de un "asistente" virtual.
+                Más adelante, en un futuro académico y laboral, el estar al nivel de una IA, sin diferenciarme, no me traerá situaciones propicias a mis metas. 
+            </p>
+    </div>
+
+</body>
+</html>
