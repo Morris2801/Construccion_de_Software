@@ -12,8 +12,8 @@ app.use(express.json());
 async function connectToDB(){
 	return await mysql.createConnection({
 		host:"localhost",
-		user:"card_user",
-		password:"testOctavio123.",
+		user:"",
+		password:"",
 		database:"cards_db"})
 }
 
